@@ -1,1 +1,12 @@
-spring.application.name=softai
+spring:
+  application:
+    name: softai
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: deepseek-r1:7b
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug
+    com.lazuream.ai: debug
