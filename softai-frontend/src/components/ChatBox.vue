@@ -17,6 +17,11 @@
           {{ getChatTitle(item) }}
         </div>
       </div>
+      <!-- 新增：展示当前会话ID -->
+      <div class="session-id-panel">
+        <p class="session-id-label">当前会话ID：</p>
+        <p class="session-id-value">{{ currentSessionId }}</p>
+      </div>
     </div>
 
     <!-- 右侧：聊天窗口 -->
@@ -87,12 +92,20 @@
 
 <script setup>
 import { ref, computed, nextTick } from 'vue'
+// 核心修改：导入utils中的generateSessionId方法
+import { generateSessionId } from '../utils/index.js'
+import { sendChatStream } from '../api/chat.js'
+// ========== 会话ID相关逻辑（已删除组件内重复定义的函数） ==========
+// 当前会话ID（每个新对话生成唯一ID）
+const currentSessionId = ref(generateSessionId())
 
+// ========== 原有逻辑 ==========
 // 初始化对话列表（确保messages一定是数组）
 const chatList = ref([
   {
     title: '',
-    messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }]
+    messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }],
+    sessionId: currentSessionId.value // 新增：给初始对话绑定会话ID
   }
 ])
 
@@ -103,7 +116,7 @@ const msgBoxRef = ref(null)
 
 // 当前激活的对话（加兜底，防止undefined）
 const currentChat = computed(() => {
-  return chatList.value[activeIdx.value] || { messages: [] }
+  return chatList.value[activeIdx.value] || { messages: [], sessionId: '' }
 })
 
 // 修复核心：获取对话标题（增加数组判断）
@@ -122,7 +135,7 @@ const getChatTitle = (chatItem) => {
   return firstMsg ? firstMsg.content.slice(0, 20) + (firstMsg.content.length > 20 ? '...' : '') : '新对话'
 }
 
-// 发送消息
+// 发送消息（修改：携带会话ID到请求头）
 const sendMsg = async () => {
   const txt = inputText.value.trim()
   if (!txt || loading.value) return
@@ -140,18 +153,13 @@ const sendMsg = async () => {
   // 滚动到底部
   nextTick(scrollToBottom)
 
-  // ========== 适配后端流式响应（Flux<String>）的核心代码 ==========
+  // ========== 适配后端流式响应（Flux<String>）的核心代码（新增会话ID请求头） ==========
   try {
     // 1. 拼接接口地址 + 编码参数
-    const url = `http://localhost:8080/ai/chat?prompt=${encodeURIComponent(txt)}`
+    const url = `http://localhost:8080/chat?prompt=${encodeURIComponent(txt)}&chatId=${currentSessionId.value}`
     
-    // 2. 发送GET请求，接收流式响应
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'text/event-stream, text/html', // 告诉后端接收流式数据
-      }
-    })
+    // 2. 发送GET请求，接收流式响应（新增：携带会话ID到请求头）
+    const res = await sendChatStream(txt, currentSessionId.value)
 
     if (!res.ok) throw new Error(`接口返回异常：${res.status}`)
     
@@ -193,10 +201,10 @@ const sendMsg = async () => {
     currentChat.value.messages[aiMsgIndex].content = fullContent
 
   } catch (err) {
-    // 接口失败的兜底提示
+    // 接口失败的兜底提示（新增：展示会话ID）
     currentChat.value.messages.push({
       role: 'ai',
-      content: '抱歉，请求失败：' + (err.message || '服务器无响应')
+      content: `抱歉，请求失败【会话ID：${currentSessionId.value}】：` + (err.message || '服务器无响应')
     })
   } finally {
     // 关闭加载状态
@@ -205,19 +213,25 @@ const sendMsg = async () => {
   }
 }
 
-// 新建对话
+// 新建对话（修改：生成新的会话ID）
 const addNewChat = () => {
+  // 生成新的会话ID
+  const newSessionId = generateSessionId()
   chatList.value.push({
     title: '',
-    messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }]
+    messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }],
+    sessionId: newSessionId // 绑定新会话ID
   })
   activeIdx.value = chatList.value.length - 1
+  currentSessionId.value = newSessionId // 更新当前会话ID
   nextTick(scrollToBottom)
 }
 
-// 切换对话
+// 切换对话（修改：同步会话ID）
 const switchChat = (idx) => {
   activeIdx.value = idx
+  // 切换时同步会话ID
+  currentSessionId.value = chatList.value[idx].sessionId || generateSessionId()
   nextTick(scrollToBottom)
 }
 
@@ -300,6 +314,27 @@ const formatTime = (date) => {
   background-color: #eff6ff;
   color: #2563eb;
   border-left-color: #2563eb;
+}
+
+/* 新增：会话ID面板样式 */
+.session-id-panel {
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+}
+
+.session-id-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 0 0 4px 0;
+}
+
+.session-id-value {
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 /* 右侧聊天窗口 */
