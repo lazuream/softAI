@@ -18,6 +18,11 @@ import org.springframework.context.annotation.Configuration;
 public class CommonConfiguration {
 
     @Bean
+    public InMemoryChatMemoryRepository chatMemory() {
+        return new InMemoryChatMemoryRepository();
+    }
+
+    @Bean
     public ChatClient chatClient(OllamaChatModel ollamaChatModel) {
         return ChatClient
                 .builder(ollamaChatModel)
