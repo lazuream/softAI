@@ -80,7 +80,7 @@ public class ChatComponent {
         try {
             log.info("----------------------开始获取 AI 新闻----------------------");
 
-            String apiKey = "sk-c4358ded11ee4e389090c30528227ecb";
+            String apiKey = "sk-xxxxxxxx";
 
             // 使用流式调用工作流
             StringBuilder fullContent = new StringBuilder();

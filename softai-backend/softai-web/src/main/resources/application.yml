@@ -12,7 +12,7 @@ spring:
     #      chat:
     #        model: deepseek-r1:7b
     openai:
-      api-key: sk-c4358ded11ee4e389090c30528227ecb  #这里填入自己的阿里百炼的 appkey
+      api-key: sk-xxxxxxxxxxxx  #这里填入自己的阿里百炼的 appkey
       base-url: https://dashscope.aliyuncs.com/compatible-mode/
       chat:
         completions-path: v1/chat/completions
