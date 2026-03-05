@@ -1,0 +1,38 @@
+
+server:
+  port: 8084
+spring:
+  application:
+    name: softai
+  ai:
+    ollama:
+      enabled: false
+    #    ollama:
+    #      base-url: http://localhost:11434
+    #      chat:
+    #        model: deepseek-r1:7b
+    openai:
+      api-key: sk-c4358ded11ee4e389090c30528227ecb  #这里填入自己的阿里百炼的 appkey
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/
+      chat:
+        completions-path: v1/chat/completions
+        options:
+          model: qwen-plus  #qwen3-max 使用max 调用mcp 报错 toolName cannot be null
+          enable_thinking: false
+    mcp:
+      client:
+        enabled: true
+        name: my-mcp-client
+        version: 1.0.0
+        request-timeout: 30s
+        type: SYNC  # or ASYNC for reactive applications
+        streamable-http:
+          connections:
+            mcp-server:
+              url: http://localhost:8085
+logging:
+  level:
+    org.springframework.ai.mcp: debug
+    org.springframework.ai.tool: debug
+    org.springframework.ai.chat.client.advisor: debug
+    com.lazuream.ai: debug

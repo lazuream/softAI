@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="38dd0d83-fbf0-4209-ab0b-2802115addc6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../softAI" beforeDir="false" afterPath="$PROJECT_DIR$/../softAI" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../softai-frontend/src/components/ChatBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../softai-frontend/src/components/ChatBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../softai-frontend/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../softai-frontend/src/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lm23395&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:lazuream/softAI.git&quot;,
+    &quot;accountId&quot;: &quot;3800a6cc-b1cb-4d8b-808a-84c432c28e0a&quot;
+  }
+}</component>
+  <component name="JRebelWorkspace">
+    <option name="jrebelEnabledAutocompile" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="39vbBwQgKh3a8IUSmkrDYvjW7eL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JUnit.SoftaiApplicationTests.contextLoads.executor": "Run",
+    "JUnit.SoftaiApplicationTests.test (1).executor": "Run",
+    "JUnit.SoftaiApplicationTests.test.executor": "Run",
+    "JUnit.SoftaiApplicationTests.testTools (1).executor": "Run",
+    "JUnit.SoftaiApplicationTests.testTools.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.SoftaiApplication.executor": "Run",
+    "Spring Boot.SoftaiMCPApplication.executor": "Run",
+    "Spring Boot.SoftaiMcpApplication.executor": "Run",
+    "Spring Boot.SoftaiWEBApplication.executor": "Run",
+    "Spring Boot.SoftaiWebApplication.executor": "Run",
+    "git-widget-placeholder": "dev/LazureaM",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/study/code/JAVA/softai/softai-backend/softai-web/src/main/java/com/lazuream/ai",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RebelAgentSelection">
+    <selection>jr</selection>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\study\code\JAVA\softai\softai-backend\softai-web\src\main\java\com\lazuream\ai" />
+      <recent name="E:\study\code\JAVA\softai\softai-backend" />
+      <recent name="E:\study\code\JAVA\softai\softai-backend\softai-web" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\study\code\JAVA\softai\softai-backend\softai-web" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lazuream.ai.constants" />
+      <recent name="com.lazuream.ai.component" />
+      <recent name="com.lazuream.ai.websocket.message" />
+      <recent name="com.lazuream.ai.websocket" />
+      <recent name="com.lazuream.ai.utils" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.SoftaiApplicationTests.testTools (1)">
+    <configuration name="SoftaiApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="softai-mcp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lazuream.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lazuream.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.lazuream.ai.SoftaiApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiApplicationTests.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="softai-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lazuream.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lazuream.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.lazuream.ai.SoftaiApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiApplicationTests.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="softai-mcp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lazuream.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lazuream.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.lazuream.ai.SoftaiApplicationTests" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiApplicationTests.testTools (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="softai-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lazuream.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lazuream.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.lazuream.ai.SoftaiApplicationTests" />
+      <option name="METHOD_NAME" value="testTools" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiApplicationTests.testTools" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="softai-mcp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.lazuream.ai.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.lazuream.ai" />
+      <option name="MAIN_CLASS_NAME" value="com.lazuream.ai.SoftaiApplicationTests" />
+      <option name="METHOD_NAME" value="testTools" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiMcpApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="softai-mcp" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lazuream.ai.SoftaiMcpApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SoftaiWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="softai-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lazuream.ai.SoftaiWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SoftaiApplicationTests.testTools (1)" />
+        <item itemvalue="JUnit.SoftaiApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.SoftaiApplicationTests.testTools" />
+        <item itemvalue="JUnit.SoftaiApplicationTests.test (1)" />
+        <item itemvalue="JUnit.SoftaiApplicationTests.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="38dd0d83-fbf0-4209-ab0b-2802115addc6" name="Changes" comment="" />
+      <created>1771579361006</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771579361006</updated>
+      <workItem from="1771579361967" duration="1689000" />
+      <workItem from="1771604399897" duration="57000" />
+      <workItem from="1771604814286" duration="279000" />
+      <workItem from="1771605211231" duration="41000" />
+      <workItem from="1771608184490" duration="2313000" />
+      <workItem from="1771659184370" duration="6455000" />
+      <workItem from="1771768822276" duration="1648000" />
+      <workItem from="1771923759800" duration="1417000" />
+      <workItem from="1772543333972" duration="11469000" />
+      <workItem from="1772556007242" duration="12588000" />
+      <workItem from="1772569112805" duration="441000" />
+      <workItem from="1772599828792" duration="24749000" />
+      <workItem from="1772680843127" duration="1455000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev/LazureaM" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-mcp/src/main/java/com/lazuream/ai/service/ChatService.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>222</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>224</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>225</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>227</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>228</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>232</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>233</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>78</line>
+          <properties class="com.lazuream.ai.component.ChatComponent" method="getAiNews">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>46</line>
+          <properties class="com.lazuream.ai.component.ChatComponent" method="send">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/softai-web/src/main/java/com/lazuream/ai/component/ChatComponent.java</url>
+          <line>221</line>
+          <properties class="com.lazuream.ai.component.ChatComponent">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

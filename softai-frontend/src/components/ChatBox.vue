@@ -17,7 +17,7 @@
           {{ getChatTitle(item) }}
         </div>
       </div>
-      <!-- 新增：展示当前会话ID -->
+      <!-- 会话ID面板 -->
       <div class="session-id-panel">
         <p class="session-id-label">当前会话ID：</p>
         <p class="session-id-value">{{ currentSessionId }}</p>
@@ -38,7 +38,7 @@
           <p>开始与 AI 助手对话吧 💬</p>
         </div>
 
-        <!-- 消息列表 -->
+        <!-- 消息列表 - 支持可点击链接 -->
         <div 
           v-for="(msg, idx) in currentChat.messages" 
           :key="idx" 
@@ -48,7 +48,7 @@
           <div class="avatar">
             <el-icon :icon="msg.role === 'user' ? 'User' : 'Robot'" size="16" />
           </div>
-          <div class="bubble">{{ msg.content }}</div>
+          <div class="bubble" v-html="formatContentWithLinks(msg.content)"></div>
           <div class="msg-time">{{ formatTime(new Date()) }}</div>
         </div>
 
@@ -92,20 +92,27 @@
 
 <script setup>
 import { ref, computed, nextTick } from 'vue'
-// 核心修改：导入utils中的generateSessionId方法
 import { generateSessionId } from '../utils/index.js'
 import { sendChatStream } from '../api/chat.js'
-// ========== 会话ID相关逻辑（已删除组件内重复定义的函数） ==========
-// 当前会话ID（每个新对话生成唯一ID）
+
+// 当前会话ID
 const currentSessionId = ref(generateSessionId())
 
-// ========== 原有逻辑 ==========
-// 初始化对话列表（确保messages一定是数组）
+// URL转可点击链接的工具函数
+const formatContentWithLinks = (content) => {
+  if (!content) return ''
+  const urlRegex = /(https?:\/\/[^\s]+)/g
+  return content.replace(urlRegex, (url) => {
+    return `<a href="${url}" target="_blank" style="color: #2563eb; text-decoration: underline; word-break: break-all;">${url}</a>`
+  })
+}
+
+// 初始化对话列表
 const chatList = ref([
   {
     title: '',
     messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }],
-    sessionId: currentSessionId.value // 新增：给初始对话绑定会话ID
+    sessionId: currentSessionId.value
   }
 ])
 
@@ -114,123 +121,135 @@ const inputText = ref('')
 const loading = ref(false)
 const msgBoxRef = ref(null)
 
-// 当前激活的对话（加兜底，防止undefined）
+// 当前激活的对话
 const currentChat = computed(() => {
   return chatList.value[activeIdx.value] || { messages: [], sessionId: '' }
 })
 
-// 修复核心：获取对话标题（增加数组判断）
+// 获取对话标题
 const getChatTitle = (chatItem) => {
-  // 先判断messages是否是数组，不是则返回默认标题
   if (!Array.isArray(chatItem.messages) || chatItem.messages.length === 0) {
     return '新对话'
   }
-  // 找第一条用户消息
   const firstUserMsg = chatItem.messages.find(msg => msg.role === 'user')
   if (firstUserMsg) {
     return firstUserMsg.content.slice(0, 20) + (firstUserMsg.content.length > 20 ? '...' : '')
   }
-  // 没有用户消息则用AI第一条消息
   const firstMsg = chatItem.messages[0]
   return firstMsg ? firstMsg.content.slice(0, 20) + (firstMsg.content.length > 20 ? '...' : '') : '新对话'
 }
 
-// 发送消息（修改：携带会话ID到请求头）
+// 核心修复：先解析新闻，再解析普通对话
 const sendMsg = async () => {
   const txt = inputText.value.trim()
   if (!txt || loading.value) return
-
-  // 确保messages是数组
   if (!Array.isArray(currentChat.value.messages)) {
     currentChat.value.messages = []
   }
-
   // 添加用户消息
   currentChat.value.messages.push({ role: 'user', content: txt })
   inputText.value = ''
   loading.value = true
-
-  // 滚动到底部
   nextTick(scrollToBottom)
 
-  // ========== 适配后端流式响应（Flux<String>）的核心代码（新增会话ID请求头） ==========
   try {
-    // 1. 拼接接口地址 + 编码参数
-    const url = `http://localhost:8080/chat?prompt=${encodeURIComponent(txt)}&chatId=${currentSessionId.value}`
-    
-    // 2. 发送GET请求，接收流式响应（新增：携带会话ID到请求头）
-    const res = await sendChatStream(txt, currentSessionId.value)
-
-    if (!res.ok) throw new Error(`接口返回异常：${res.status}`)
-    
-    // 3. 检查是否有可读流
-    if (!res.body) throw new Error('后端未返回流式数据')
-    
-    // 4. 创建AI回复占位（用于实时更新）
-    const aiMsgIndex = currentChat.value.messages.length
-    currentChat.value.messages.push({
-      role: 'ai',
-      content: '' // 初始为空，后续逐字拼接
+    const url = `http://localhost:8084/agent/sendMessage?chatId=${currentSessionId.value}&message=${encodeURIComponent(txt)}`
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: { 'Accept': 'application/json' }
     })
-
-    // 5. 解析流式响应
-    const reader = res.body.getReader()
-    const decoder = new TextDecoder('utf-8') // 解码UTF-8数据
-    let fullContent = '' // 存储完整的AI回复
-
-    // 6. 循环读取流数据（逐段接收后端返回的内容）
-    while (true) {
-      const { done, value } = await reader.read()
-      
-      // 流结束则退出循环
-      if (done) break
-      
-      // 解码并拼接内容
-      const chunk = decoder.decode(value, { stream: true })
-      fullContent += chunk
-      
-      // 实时更新AI回复内容
-      currentChat.value.messages[aiMsgIndex].content = fullContent
-      
-      // 每次更新后滚动到底部
-      nextTick(scrollToBottom)
+    if (!res.ok) throw new Error(`接口返回异常：${res.status}`)
+    const responseData = await res.json()
+    if (responseData.status !== 'success') {
+      throw new Error(responseData.info || '请求失败')
     }
 
-    // 7. 流读取完成，确保最后一段内容解码
-    fullContent += decoder.decode()
-    currentChat.value.messages[aiMsgIndex].content = fullContent
+    const dataStr = responseData.data
+    // ========== 第一步：优先解析新闻数据（多个JSON对象拼接） ==========
+    const jsonObjects = []
+    const regex = /\{[\s\S]*?\}(?=\s*\{|\s*$)/g
+    let match
+    while ((match = regex.exec(dataStr)) !== null) {
+      try {
+        const obj = JSON.parse(match[0])
+        // 验证是否为有效新闻对象（包含num/title/abstract/link字段）
+        if (obj.num && obj.title && obj.abstract && obj.link) {
+          jsonObjects.push(obj)
+        }
+      } catch (e) {
+        console.warn('解析新闻JSON对象失败:', match[0])
+      }
+    }
 
+    // 如果解析出有效新闻列表，套用新闻模版
+    if (jsonObjects.length > 0) {
+      let formattedContent = '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+      formattedContent += '                             📰 AI新闻周报                              \n';
+      formattedContent += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+      jsonObjects.forEach((item, index) => {
+        formattedContent += `【${item.num}】${item.title}\n`;
+        formattedContent += `📝 ${item.abstract}\n`;
+        formattedContent += `🔗 阅读全文：${item.link}\n`;
+        if (index < jsonObjects.length - 1) {
+          formattedContent += '──────────────────────────────────────────────────\n';
+        }
+      });
+      formattedContent += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n';
+      formattedContent += '                            新闻来源：AI资讯                            \n';
+      formattedContent += '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━';
+      currentChat.value.messages.push({ role: 'ai', content: formattedContent });
+    } else {
+      // ========== 第二步：解析普通CHAT对话（嵌套JSON） ==========
+      try {
+        const coreData = JSON.parse(dataStr)
+        // 普通CHAT对话：提取纯文本
+        if (coreData.intentType === 'CHAT') {
+          currentChat.value.messages.push({
+            role: 'ai',
+            content: coreData.data || '暂无回复内容'
+          })
+        } else {
+          // 其他类型消息
+          currentChat.value.messages.push({
+            role: 'ai',
+            content: `收到其他类型消息: ${coreData.intentType}`
+          })
+        }
+      } catch (e) {
+        // ========== 第三步：兜底：直接返回纯文本 ==========
+        currentChat.value.messages.push({ role: 'ai', content: dataStr })
+      }
+    }
+
+    nextTick(scrollToBottom)
   } catch (err) {
-    // 接口失败的兜底提示（新增：展示会话ID）
+    // 接口失败兜底
     currentChat.value.messages.push({
       role: 'ai',
       content: `抱歉，请求失败【会话ID：${currentSessionId.value}】：` + (err.message || '服务器无响应')
     })
   } finally {
-    // 关闭加载状态
     loading.value = false
     nextTick(scrollToBottom)
   }
 }
 
-// 新建对话（修改：生成新的会话ID）
+// 新建对话
 const addNewChat = () => {
-  // 生成新的会话ID
   const newSessionId = generateSessionId()
   chatList.value.push({
     title: '',
     messages: [{ role: 'ai', content: '你好！我是 AI 智能助手，请问有什么可以帮助你的？' }],
-    sessionId: newSessionId // 绑定新会话ID
+    sessionId: newSessionId
   })
   activeIdx.value = chatList.value.length - 1
-  currentSessionId.value = newSessionId // 更新当前会话ID
+  currentSessionId.value = newSessionId
   nextTick(scrollToBottom)
 }
 
-// 切换对话（修改：同步会话ID）
+// 切换对话
 const switchChat = (idx) => {
   activeIdx.value = idx
-  // 切换时同步会话ID
   currentSessionId.value = chatList.value[idx].sessionId || generateSessionId()
   nextTick(scrollToBottom)
 }
@@ -243,9 +262,7 @@ const clearCurrentChat = () => {
 // 滚动到底部
 const scrollToBottom = () => {
   const el = msgBoxRef.value
-  if (el) {
-    el.scrollTop = el.scrollHeight
-  }
+  if (el) el.scrollTop = el.scrollHeight
 }
 
 // 时间格式化
@@ -316,7 +333,7 @@ const formatTime = (date) => {
   border-left-color: #2563eb;
 }
 
-/* 新增：会话ID面板样式 */
+/* 会话ID面板 */
 .session-id-panel {
   padding: 16px 20px;
   border-top: 1px solid #e5e7eb;
@@ -420,11 +437,18 @@ const formatTime = (date) => {
   font-size: 14px;
   line-height: 1.5;
   margin: 0 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .msg.user .bubble {
   background: #2563eb;
   color: white;
+}
+
+/* 修复用户侧链接样式 */
+.msg.user .bubble a {
+  color: #bfdbfe !important;
 }
 
 .msg-time {

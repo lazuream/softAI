@@ -1,0 +1,4 @@
+.ai-message {
+  white-space: pre-wrap;  /* 保留换行符 */
+  font-family: monospace; /* 使用等宽字体保持对齐 */
+}
