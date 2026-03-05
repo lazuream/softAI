@@ -45,7 +45,7 @@ public class ChatService {
             String apiKey = System.getenv("DASHSCOPE_API_KEY");
             if (apiKey == null || apiKey.isEmpty()) {
                 // 如果环境变量没有，可以 fallback 到直接设置（仅用于测试）
-                apiKey = "sk-c4358ded11ee4e389090c30528227ecb";
+                apiKey = "sk-xxxxxx";
                 log.warn("使用硬编码的 API Key，建议设置 DASHSCOPE_API_KEY 环境变量");
             }
 
