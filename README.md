@@ -1,7 +1,7 @@
 # SoftAI 项目配置说明
 # 项目概述
 该项目是基于 Spring AI 构建的 AI 交互应用，通过配置文件 application.yml 管理核心参数，其中 API Key 是调用阿里百炼 AI 接口的关键凭证，需按要求替换为有效密钥才能正常使用。
-核心配置 - API Key 填写步骤
+## 核心配置 - API Key 填写步骤
 1. 定位配置位置
 打开配置文件：softai-web/src/main/resources/application.yml，找到以下核心配置段：
 ```yaml
@@ -42,7 +42,8 @@ chat:
 ```
 model：默认使用 qwen-plus 模型，避免使用 qwen3-max（调用 MCP 会报 toolName cannot be null 错误）；
 enable_thinking：是否启用思考模式，默认关闭。
-MCP 客户端配置
+## MCP 客户端配置（目前使用mcp调用工作流有误）
+
 ```yaml
 mcp:
   client:
@@ -70,7 +71,7 @@ logging:
     com.lazuream.ai: debug
 ```
 项目默认开启 AI 相关模块的调试日志，便于排查问题；若需降低日志级别，可将 debug 改为 info/warn/error。
-注意事项
+## 注意事项
 密钥安全：API Key 是敏感信息，禁止提交到公共代码仓库，确保 .gitignore 已忽略 application.yml 文件；
 格式校验：修改 YAML 文件时严格遵守语法规范，缩进、空格错误会导致配置加载失败；
 权限验证：确保阿里百炼 API Key 未过期，且已开通 qwen-plus 等模型的调用权限；
